@@ -1,10 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Slowshooter
 {
     internal class Program
     {
+        static bool spikePressedP1 = false;
+        static bool spikePressedP2 = false;
+
+        static List<(int, int)> spikeListP1 = new List<(int, int)>();
+
+
 
         static string playField =
  @"+----------+   +----------+
@@ -47,7 +54,7 @@ namespace Slowshooter
         static int turn = -1;
 
         // contains the keys that player 1 and player 2 are allowed to press
-        static (char[], char[]) allKeybindings = (new char[]{ 'W', 'A', 'S', 'D' }, new char[]{ 'J', 'I', 'L', 'K' });
+        static (char[], char[]) allKeybindings = (new char[]{ 'W', 'A', 'S', 'D', 'E' }, new char[]{ 'J', 'I', 'L', 'K', 'O' });
         static ConsoleColor[] playerColors = { ConsoleColor.Red, ConsoleColor.Blue };
 
         static void Main(string[] args)
@@ -92,11 +99,13 @@ namespace Slowshooter
             if (input == ConsoleKey.D) p1_x_input = 1;
             if (input == ConsoleKey.W) p1_y_input = -1;
             if (input == ConsoleKey.S) p1_y_input = 1;
+            if (input == ConsoleKey.E) spikePressedP1 = true;
           
             if (input == ConsoleKey.J) p2_x_input = -1;
             if (input == ConsoleKey.L) p2_x_input = 1;
             if (input == ConsoleKey.I) p2_y_input = -1;
             if (input == ConsoleKey.K) p2_y_input = 1;
+            if (input == ConsoleKey.O) spikePressedP2 = true;
 
         }
 
@@ -114,6 +123,21 @@ namespace Slowshooter
 
             p2_y_pos += p2_y_input;
             p2_y_pos = p2_y_pos.Clamp(p2_min_max_y.Item1, p2_min_max_y.Item2);
+
+            if (spikePressedP1 == true)
+            {
+                SpawnSpikeP1();
+                Console.Write("X");
+
+                spikePressedP1 = false;
+            }
+            if (spikePressedP2 == true)
+            {
+                SpawnSpikeP2();
+                Console.Write("X");
+
+                spikePressedP2 = false;
+            }
 
             turn += 1;
 
@@ -145,6 +169,47 @@ namespace Slowshooter
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine("\nUSE WASD or IJKL to move");
             Console.ForegroundColor = ConsoleColor.White;
+
+            //Draw Spikes
+            foreach ((spikeListP1[]) in spikeListP1)
+            {
+                Console.SetCursorPosition(randomSpikeX, randomSpikeY)
+                Console.Write("X");
+            }
+            
+
+           
+
+        }
+
+        static void SpawnSpikeP1()
+        {
+           
+            Random spikeX = new Random();
+            Random spikeY = new Random();
+
+            int randomSpikeX = spikeX.Next(16,25);
+            int randomSpikeY = spikeY.Next(1, 10);
+
+            spikeListP1.Add((randomSpikeX, randomSpikeY));
+
+
+
+
+
+
+        }
+        static void SpawnSpikeP2()
+        {
+
+            Random spikeX2 = new Random();
+            Random spikeY2 = new Random();
+
+            int randomSpikeX = spikeX2.Next(1, 10);
+            int randomSpikeY = spikeY2.Next(1, 10);
+
+            Console.SetCursorPosition(randomSpikeX, randomSpikeY);
+
         }
     }
 }
