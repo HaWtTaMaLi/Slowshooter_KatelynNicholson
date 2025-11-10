@@ -6,12 +6,18 @@ namespace Slowshooter
     internal class Program
     {
 
-        static string playField = 
-@"+---+   +---+
-|   |   |   |
-|   |   |   |
-|   |   |   |
-+---+   +---+";
+        static string playField =
+ @" +----------+   +----------+
+ |          |   |          |
+ |          |   |          |
+ |          |   |          |
+ |          |   |          |
+ |          |   |          |
+ |          |   |          |
+ |          |   |          |
+ |          |   |          |
+ |          |   |          |
+ +----------+   +----------+";
 
         static bool isPlaying = true;
 
@@ -32,9 +38,9 @@ namespace Slowshooter
 
         // bounds for player movement
         static (int, int) p1_min_max_x = (1, 3);
-        static (int, int) p1_min_max_y = (1, 3);
+        static (int, int) p1_min_max_y = (1, 10);
         static (int, int) p2_min_max_x = (9, 11);
-        static (int, int) p2_min_max_y = (1, 3);
+        static (int, int) p2_min_max_y = (1, 10);
 
         // what turn is it? will be 0 after game is drawn the first time
         static int turn = -1;
@@ -129,7 +135,7 @@ namespace Slowshooter
             Console.Write("O");
 
             // draw the Turn Indicator
-            Console.SetCursorPosition(3, 5);
+            Console.SetCursorPosition(3, 11);
             Console.ForegroundColor = playerColors[turn % 2];
 
             Console.Write($"PLAYER {turn % 2 + 1}'S TURN!");
