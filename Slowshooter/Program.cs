@@ -171,14 +171,11 @@ namespace Slowshooter
             Console.ForegroundColor = ConsoleColor.White;
 
             //Draw Spikes
-            foreach ((spikeListP1[]) in spikeListP1)
+            foreach (var spikeListP1 in spikeListP1)
             {
-                Console.SetCursorPosition(randomSpikeX, randomSpikeY)
+                Console.SetCursorPosition(randomSpikeX, randomSpikeY);
                 Console.Write("X");
             }
-            
-
-           
 
         }
 
@@ -192,11 +189,6 @@ namespace Slowshooter
             int randomSpikeY = spikeY.Next(1, 10);
 
             spikeListP1.Add((randomSpikeX, randomSpikeY));
-
-
-
-
-
 
         }
         static void SpawnSpikeP2()
