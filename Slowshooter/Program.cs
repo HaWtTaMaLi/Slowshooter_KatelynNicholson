@@ -10,7 +10,7 @@ namespace Slowshooter
         static bool spikePressedP2 = false;
 
         static List<(int, int)> spikeListP1 = new List<(int, int)>();
-
+        static List<(int, int)> spikeListP2 = new List<(int, int)>();
 
 
         static string playField =
@@ -172,6 +172,12 @@ namespace Slowshooter
 
             //Draw Spikes
             foreach (var spikeListP1 in spikeListP1)
+            {
+                Console.SetCursorPosition(randomSpikeX, randomSpikeY);
+                Console.Write("X");
+            }
+
+            foreach (var spikeListP2 in spikeListP2)
             {
                 Console.SetCursorPosition(randomSpikeX, randomSpikeY);
                 Console.Write("X");
