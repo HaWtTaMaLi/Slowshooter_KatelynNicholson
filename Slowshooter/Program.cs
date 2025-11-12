@@ -66,7 +66,6 @@ namespace Slowshooter
                 ProcessInput();
                 Update();
                 Draw();
-                
             }
         }
 
@@ -140,7 +139,6 @@ namespace Slowshooter
             }
 
             turn += 1;
-
         }
 
         static void Draw()
@@ -200,11 +198,11 @@ namespace Slowshooter
         static void SpawnSpikeP2()
         {
 
-            Random spikeX2 = new Random();
-            Random spikeY2 = new Random();
+            Random spikeX = new Random();
+            Random spikeY = new Random();
 
-            int randomSpikeX = spikeX2.Next(1, 10);
-            int randomSpikeY = spikeY2.Next(1, 10);
+            int randomSpikeX = spikeX.Next(1, 10);
+            int randomSpikeY = spikeY.Next(1, 10);
 
             spikeListP2.Add((randomSpikeX, randomSpikeY));
 
